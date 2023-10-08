@@ -5,5 +5,5 @@ module.exports = mongoose.model('Lighting', new mongoose.Schema({
   floor: String,
   room: String,
   status: Boolean,
-  sensorData: Array
+ 
 }, { collection : 'lighting' }));

@@ -2,20 +2,21 @@
 <html>
 <head>
   <title>Add Device</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
     body {
       
       font-family: 'Lato', sans-serif;
       background-image: url("w2.jpg");
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size:auto;
     }
 
     .form-container {
-      background-color: #fcfcfc;
+      background-color: transparent;
       padding: 30px;
       max-width: 900px;
       border-radius: 10px;
@@ -34,34 +35,7 @@
       font-size: 16px;
       font-weight: bold;
     }
-    nav {
-      display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #333;
-        color: #fff;
-        height: 60px;
-        padding: 0 20px;
-}
 
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin: 0 10px;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-}
-
-
-		
     label {
       font-weight: bold;
     }
@@ -73,17 +47,20 @@ nav a {
     .form-control {
       border-radius: 5px;
     }
+    .nav-link:hover{
+      font-weight: bold; color:#ffffff; border-radius: 20px; border-width: 5px; border-color: #ffffff;
+    }
+    
     .btn {
-      background-color: #fff;
-      color: #000;
+      color: #ffffff;
       border-radius: 50px;
-      border-color: cornflowerblue;
+      border-color: rgb(173, 188, 215);
       padding: 10px 20px;
       margin-right: 10px;
     }
     .btn:hover {
-      background-color: #000;
-      color: #fff;
+      background-color: #fff;
+      color: #000;
     }
 
     .container {
@@ -91,7 +68,7 @@ nav a {
       justify-content: center;
       align-items: center;
       margin: 0 auto;
-      height: 100vh;
+      height: 70vh;
       
     }
     .navbar {
@@ -101,48 +78,46 @@ nav a {
 </head>
 <body>
   
+ 
   <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-transparent">
-
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNav" style="margin-top: 20px; margin-left: 1000px;">
+		<div class="collapse navbar-collapse" id="navbarNav" style="margin-top: 20px;">
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/">Home</a>
-			</li>
-      <li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/d_data">Monitor</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/add-device">Add Device</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/remove_d">Remove Device</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/lighting">Lighting</a>
+        <a class="btn" href="/">Home</a>
 			</li>
      
+      <li class="nav-item">
+        <a class="btn" href="/m_dev">Monitor</a>
+			</li>
+			<li class="nav-item">
+        <a class="btn" href="/a_d">Add Device</a>
+			</li>
+			<li class="nav-item">
+        <a class="btn" href="/rem_Dev">Remove Device</a>
+			</li>
+			<li class="nav-item">
+        <a class="btn" href="/lighting">Lighting</a>
+			</li>
       
 		  </ul>
 		</div>
 	  </nav>
 
   <div class="container">
-    
+    <h1 class="text-center" style="margin-bottom: 50px; color: #ffffff; margin-left: 100px;">Add Device</h1>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 form-container">
-        <h1 class="text-center" style="margin-bottom: 50px;">Add Device</h1>
+      <div style ="margin-left: 300px;"class="col-md-offset-3 col-md-offset-3 form-container">
         <form>
           <div class="form-group">
-            <label for="name">Device Name:</label>
-            <input type="text" class="form-control" id="new_device_name" name="name" required>
+            <label for="name" style="color: #ffffff;">Device Name:</label>
+            <input type="text" class="form-control" id="add_devs_name" name="name" required>
           </div>
-
           <div class="form-group">
-            <label for="floor">Floor Level:</label>
-            <select class="form-control" id="new_device_floor" name="floor" required>
+            <label for="floor"  style="color: #ffffff;">Floor Level:</label>
+            <select class="form-control" id="add_devs_floor" name="floor" required>
               <option value="">--Select Floor--</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -150,37 +125,29 @@ nav a {
               <option value="4">4</option>
             </select>
           </div>
-
           <div class="form-group">
-            <label for="room">Room Number:</label>
-            <select class="form-control" id="new_device_room" name="room" required>
-              <!-- will be updated based on floor select through data on mongodb database -->
+            <label for="room"  style="color: #ffffff;">Room Number:</label>
+            <select class="form-control" id="add_devs_room" name="room" required>
             </select>
           </div>
-
           <div class="form-group">
-            <label for="type">Type of Device:</label>
-            <select class="form-control" id="new_device_type" name="type" required>
+            <label for="type"  style="color: #ffffff;">Type of Device:</label>
+            <select class="form-control" id="add_devs_type" name="type" required>
               <option value="" style="margin-bottom: 20px;">--Select Type--</option>
               <option value="1">Lighting Device</option>
               <option value="2">Air-Conditioning Device</option>
               <option value="3">Security Device</option>
-
             </select>
           </div>
-    
           <div class="text-center">
-            <button type="button" class="btn" id="add_device_button">Add Device</button>
+            <button type="button" class="btn" id="add_d">Add Device</button>
             <button type="button" class="btn" onclick="window.history.back()">Go Back</button>
           </div>
         </form>
       </div>
     </div>
 </div>
-<!-- Add this to your HTML file -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>
-
-

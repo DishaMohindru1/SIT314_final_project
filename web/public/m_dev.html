@@ -2,20 +2,16 @@
 <html>
 <head>
 	<title>Select Device</title>
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
-	<!-- Custom CSS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<style>
 		body {
-			font-family: 'Lato', sans-serif;
+			font-family: 'Comfortaa', cursive;
             background-image: url("w2.jpg");
             background-repeat: no-repeat;
-            background-size: cover;
-		}
+			background-size:auto;		}
 		h2 {
 			margin-top: 0;
 		}
@@ -23,7 +19,7 @@
         background-color: transparent !important;
     }
 		.form-container {
-            background-color: #ffffff;
+            background-color: transparent;
         padding: 20px;
         
         border-radius: 20px;
@@ -31,13 +27,13 @@
         max-width: 400px;
         margin-left: 100px;
         
-        margin-top: 200px;
+        margin-top: 150px;
         margin-bottom: 10px;
-        height: 50vh;
+        height: 70vh;
 		}
 		.data-container {
 			margin-right: 20px;
-            background-color: #ffffff;
+            background-color: transparent;
         padding: 20px;
         border-radius: 20px;
         box-shadow: 0px 0px 10px 0px #bfbfbf;
@@ -54,21 +50,24 @@
 			justify-content: center;
 			
 		}
-		form {
-			margin-bottom: 20px;
-		}
-		.btn {
-      background-color: #fff;
-      color: #000;
+		.nav-link:hover{
+      font-weight: bold; color:#ffffff; border-radius: 20px; border-width: 5px; border-color: #ffffff;
+    }
+    .btn {
+      color: #ffffff;
       border-radius: 50px;
-      border-color: cornflowerblue;
+      border-color: rgb(173, 188, 215);
       padding: 10px 20px;
       margin-right: 10px;
     }
     .btn:hover {
-      background-color: #000;
-      color: #fff;
+      background-color: #fff;
+      color: #000;
     }
+		form {
+			margin-bottom: 20px;
+		}
+	
 		.graph {
 			height: 200px;
 			margin-top: 20px;
@@ -77,60 +76,34 @@
 			padding: 10px;
 			box-sizing: border-box;
 		}
-		nav {
-      display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #333;
-        color: #fff;
-        height: 60px;
-        padding: 0 20px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin: 0 10px;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-}
+		
 	</style>
 </head>
 <body>
-    <script>
-		console.log('Loading d_data.html...');
-	  </script>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-transparent">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-transparent">
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNav" style="margin-top: 20px; margin-left: 1000px;">
+		<div class="collapse navbar-collapse" id="navbarNav" style="margin-top: 20px;">
 		  <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/">Home</a>
+        <a class="btn" href="/">Home</a>
 			</li>
+      
       <li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/d_data">Monitor</a>
+        <a class="btn" href="/m_dev">Monitor</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/add-device">Add Device</a>
+        <a class="btn" href="/a_d">Add Device</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/remove_d">Remove Device</a>
+        <a class="btn" href="/rem_Dev">Remove Device</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" style="font-weight: bold; color:#ffffff; " href="/lighting">Lighting</a>
+        <a class="btn" href="/lighting">Lighting</a>
 			</li>
-
+      
 		  </ul>
 		</div>
 	  </nav>
@@ -138,17 +111,17 @@ nav a {
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6 form-container">
-				<h2 style="margin-bottom: 30px;">Select Device</h2>
+				<h2 style="margin-bottom: 30px; color: #ffffff;">Select Device</h2>
 				<form>
-					<label>Type of Device:</label>
-					<select id="d_data_type" class="form-control" name="deviceType">
+					<label style="color: #ffffff;">Type of Device:</label>
+					<select id="dev_dev_ty" class="form-control" name="deviceType">
 						<option value="1">Lighting Device</option>
 						<option value="2">Air-Conditioning Device</option>
 						<option value="3">Security</option> Device</option>
 					</select>
 					<br>
-					<label>Floor Number:</label>
-					<select id="d_data_floor" class="form-control" name="floorNumber">
+					<label style="color: #ffffff;">Floor Number:</label>
+					<select id="dev_dev_floor" class="form-control" name="floorNumber">
 						<option value="">--Select--</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -156,22 +129,22 @@ nav a {
 						<option value="4">4</option>
 					</select>
 					<br>
-					<label>Room Number:</label>
-					<select id="d_data_room" class="form-control" name="roomNumber">
+					<label style="color: #ffffff;">Room Number:</label>
+					<select id="dev_dev_r" class="form-control" name="roomNumber">
 						
 					</select>
 					<br>
-					<label>Device:</label>
-					<select id="d_data_device" class="form-control" name="device">
+					<label style="color: #ffffff;">Device:</label>
+					<select id="dev_dev_device" class="form-control" name="device">
 						
 					</select>
 					<br>
-					<button id="d_data_button" type="button" class="btn" >Show Data</button>
-					<button type="button" class="btn" onclick="goBack()">Go Back</button>
+					<button id="dev_dev_btn" type="button"  class="btn" >Show Data</button>
+					<button  class="btn" onclick="goBack()">Go Back</button>
 				</form>
 			</div>
 			<div class="col-md-6 data-container">
-				<div id="dataContainer"></div>
+				<div id="data_container"></div>
 				<div id="graph" class="graph"></div>
 			</div>
 		</div>

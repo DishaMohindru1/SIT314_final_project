@@ -1,27 +1,27 @@
 const express = require('express');
-const fs = require('fs')
-const helmet = require("helmet");
+const fs = require('fs');
+const helmet = require('helmet');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const https = require('https')
+const http = require('http'); // Import https module instead of http
 var sslOptions = {
-key: fs.readFileSync('key.pem'),
-cert: fs.readFileSync('cert.pem'),
-passphrase: 'qwerty'
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+  passphrase: 'qwerty',
 };
 
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.port || 5000;
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Cross-Origin-Resource-Policy", "same-site");
-  res.header("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.header('Cross-Origin-Embedder-Policy', 'require-corp');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
@@ -37,40 +37,53 @@ const swaggerOptions = {
   },
   apis: ['./api.js'], // Path to your API route files
 };
+
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://code.highcharts.com/highcharts.js","https://maps.googleapis.com", "https://code.jquery.com", "https://cdnjs.cloudflare.com", "https://stackpath.bootstrapcdn.com", "https://fonts.googleapis.com"],
-      connectSrc: ["'self'", "https://localhost:3000", "mongodb+srv://your-mongodb-url"],
-      frameAncestors: ["'none'"],
-      "Cross-Origin-Embedder-Policy": "require-corp",
-      imgSrc: ["'self'", "data:"],
-      styleSrc: ["'self'","https://maxcdn.bootstrapcdn.com", "https://stackpath.bootstrapcdn.com", "https://fonts.googleapis.com", "'unsafe-inline'"],
-      fontSrc: ["'self'", "https://maxcdn.bootstrapcdn.com","https://stackpath.bootstrapcdn.com","https://fonts.gstatic.com", "https://fonts.googleapis.com", "data:"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: []
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          'https://code.highcharts.com/highcharts.js',
+          'https://maps.googleapis.com',
+          'https://code.jquery.com',
+          'https://cdnjs.cloudflare.com',
+          'https://stackpath.bootstrapcdn.com',
+          'https://fonts.googleapis.com',
+        ],
+        connectSrc: ["'self'", 'http://localhost:3000', 'mongodb+srv://your-mongodb-url'],
+        frameAncestors: ["'none'"],
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+        imgSrc: ["'self'", 'data:'],
+        styleSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://stackpath.bootstrapcdn.com', 'https://fonts.googleapis.com', "'unsafe-inline'"],
+        fontSrc: ["'self'", 'https://maxcdn.bootstrapcdn.com', 'https://stackpath.bootstrapcdn.com', 'https://fonts.gstatic.com', 'https://fonts.googleapis.com', 'data:"'],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+      reportOnly: false,
     },
-    reportOnly: false
-  }
-}));
+  })
+);
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://vishal4855be21:g8Syw62NPqqVS5p2@cluster0.bvvimlw.mongodb.net/myFirstDatabase', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://Disha:HRnEK4EF4DnwFmKq@cluster0.hmlogwa.mongodb.net/SmartLighting', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const Device = require('./models/device'); 
+const Device = require('./models/device');
 const Lighting = require('./models/lighting');
-const Security = require('./models/security'); 
+const Security = require('./models/security');
 const AirCond = require('./models/acond');
 const FloorRoom = require('./models/floor-room');
 
-var server = https.createServer(sslOptions, app).listen(port, function(){
-  console.log("Express server listening on port " + port);
-  });
+// Create an HTTPS server using the provided SSL options
+var server = http.createServer(app).listen(port, function () {
+  console.log('Express server listening on port ' + port);
+});
+
 
 app.get('/test', (req, res) => {
   res.send('The API is working!');
@@ -98,7 +111,7 @@ app.get('/test', (req, res) => {
 
 
 app.get('/api/rooms', async (req, res) => {
-
+  console.log("got a floor");
   try {
     const floor = req.query.floor;
     const floorRoom = await FloorRoom.findOne({ floor: floor }).exec();
